@@ -1,0 +1,964 @@
+{
+	"info": {
+		"_postman_id": "9080dc18-8fb1-4bb3-8683-598e6a7f938b",
+		"name": "Online Food Delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2020224",
+		"_collection_link": "https://bold-eclipse-2030.postman.co/workspace/cmos~7a09ed0d-f153-4c76-b988-b0e4b877c934/collection/2020224-9080dc18-8fb1-4bb3-8683-598e6a7f938b?action=share&source=collection_link&creator=2020224"
+	},
+	"item": [
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"risqi\",\r\n    \"email\":\"risqi@mail.com\",\r\n    \"password\":\"12345678\",\r\n    \"phone\":\"08223422334\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://online-food.test/api/user/register",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Restaurant Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Risqi Restaurant",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "risqi.rest@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "restaurant_name",
+							"value": "Risqi Bun",
+							"type": "text"
+						},
+						{
+							"key": "restaurant_address",
+							"value": "Jl Pahlawan No 1",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/risqi/Downloads/bearded-man-denim-shirt-round-glasses.jpg"
+						},
+						{
+							"key": "latlong",
+							"value": "12345645643,232432",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "093425435324",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://online-food.test/api/restaurant/register",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"restaurant",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Driver Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Risqi Driver",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "risqi.driver@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/risqi/Downloads/img3.jpg"
+						},
+						{
+							"key": "phone",
+							"value": "093425435324",
+							"type": "text"
+						},
+						{
+							"key": "license_plate",
+							"value": "B 2345 KJJ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://online-food.test/api/driver/register",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"driver",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseData=pm.response.json();\r",
+							"if(responseData.data && responseData.data.token) {\r",
+							"    pm.collectionVariables.set(\"TOKEN_LOGIN\", \"Bearer \" + responseData.data.token);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"risqi.rest@mail.com\",\r\n    \"password\":\"12345678\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/login",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"risqi@mail.com\",\r\n    \"password\":\"12345678\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/logout",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Latlong",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"latlong\":\"222222222222,33333\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/user/update-latlong",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"user",
+						"update-latlong"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Restaurant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"latlong\":\"222222222222,33333\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/restaurant",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Create",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Jus Mangga",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Panas haus cocok",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "20000",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "is_available",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "is_favorite",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/risqi/Downloads/bearded-man-denim-shirt-round-glasses.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://online-food.test/api/product",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Update",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"gass\",\r\n    \"description\": \"Gass\",\r\n    \"price\": 20000,\r\n    \"stock\": 200,\r\n    \"is_available\": 1,\r\n    \"is_favorite\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://online-food.test/api/product/2",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"product",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Get By Restaurant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://online-food.test/api/product",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Delete",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://online-food.test/api/product/1",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Create",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"restaurant_id\":3,\r\n    \"shipping_cost\":20000,\r\n    \"order_items\":[\r\n        {\r\n            \"product_id\": 2,\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Get Status Order For Restaurant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"restaurant_id\":2,\r\n    \"shipping_cost\":20000,\r\n    \"order_items\":[\r\n        {\r\n            \"product_id\": 2,\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/restaurant?status=pending",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"restaurant"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "pending"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Update Status Order For Restaurant",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"preparing\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/restaurant/update-status/2",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"restaurant",
+						"update-status",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Update Status Order For Driver",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"on_the_way\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/driver/update-status/2",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"driver",
+						"update-status",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Get Status Order For Driver",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"ready_for_delivery\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/driver",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"driver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Get Status Order For User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"ready_for_delivery\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/user",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Update Status Order For User",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{TOKEN_LOGIN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"processing\"\r\n}"
+				},
+				"url": {
+					"raw": "http://online-food.test/api/order/user/update-status/2",
+					"protocol": "http",
+					"host": [
+						"online-food",
+						"test"
+					],
+					"path": [
+						"api",
+						"order",
+						"user",
+						"update-status",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN_LOGIN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
